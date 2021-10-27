@@ -22,4 +22,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // dashboard routes
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+
+    Route::get('/users',[\App\Http\Controllers\UserController::class,'index'])->name('users');
+
 });
