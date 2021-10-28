@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\EmployeeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,4 +30,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/customers', [CustomerController::class, 'index'])->name('customers');
     Route::get('/customers/form/{id?}', [CustomerController::class, 'form'])->name('customers.form');
     Route::post('/customers/save', [CustomerController::class, 'save'])->name('customers.save');
+
+    Route::get('/employees', [EmployeeController::class, 'index'])->name('employees');
+    Route::get('/employees/form/{id?}', [EmployeeController::class, 'form'])->name('employees.form');
+    Route::post('/employees/save', [EmployeeController::class, 'save'])->name('employees.save');
+
+
 });

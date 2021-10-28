@@ -14,66 +14,66 @@
                     <div class="col-lg-6">
                         <form action="{{route('customers.save')}}" method="POST">
                             @csrf
-                            <input type="hidden" name="id" value="{{$customer->id ?? old('id')}}">
+                            <input type="hidden" name="id" value="{{$data->id ?? old('id')}}">
                             <div class="mb-3 row">
                                 <label for="name" class="col-sm-2 col-form-label">Name</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="name" required value="{{$customer->name ?? old('name')}}" >
+                                    <input type="text" class="form-control" name="name" required value="{{$data->name ?? old('name')}}" >
                                 </div>
                             </div>
                             <div class="mb-3 row">
                                 <label for="phone" class="col-sm-2 col-form-label">Phone</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="phone"  value="{{$customer->phone ??  old('phone')}}">
+                                    <input type="text" class="form-control" name="phone"  value="{{$data->phone ??  old('phone')}}">
                                 </div>
                             </div>
 
                             <div class="mb-3 row">
                                 <label for="phone" class="col-sm-2 col-form-label">Email</label>
                                 <div class="col-sm-10">
-                                    <input type="email" class="form-control" name="email"  value="{{$customer->email ??  old('email')}}">
+                                    <input type="email" class="form-control" name="email"  value="{{$data->email ??  old('email')}}">
                                 </div>
                             </div>
 
                             <div class="mb-3 row">
                                 <label for="phone" class="col-sm-2 col-form-label">Address</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="address"  value="{{$customer->address ??  old('address')}}">
+                                    <input type="text" class="form-control" name="address"  value="{{$data->address ??  old('address')}}">
                                 </div>
                             </div>
 
                             <div class="mb-3 row">
                                 <label for="phone" class="col-sm-2 col-form-label">City</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="city"  value="{{$customer->city ??  old('city')}}">
+                                    <input type="text" class="form-control" name="city"  value="{{$data->city ??  old('city')}}">
                                 </div>
                             </div>
 
                             <div class="mb-3 row">
                                 <label for="phone" class="col-sm-2 col-form-label">Country</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="country"  value="{{$customer->country ??  old('country')}}">
+                                    <input type="text" class="form-control" name="country"  value="{{$data->country ??  old('country')}}">
                                 </div>
                             </div>
 
                             <div class="mb-3 row">
                                 <label for="phone" class="col-sm-2 col-form-label">Postal Code</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="postal_code"  value="{{$customer->postal_code ??  old('postal_code')}}">
+                                    <input type="text" class="form-control" name="postal_code"  value="{{$data->postal_code ??  old('postal_code')}}">
                                 </div>
                             </div>
 
                             <div class="mb-3 row">
                                 <label for="phone" class="col-sm-2 col-form-label">Join source</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" name="join_source"  value="{{$customer->join_source ??  old('join_source')}}">
+                                    <input type="text" class="form-control" name="join_source"  value="{{$data->join_source ??  old('join_source')}}">
                                 </div>
                             </div>
 
                             <div class="mb-3 row">
                                 <label for="phone" class="col-sm-2 col-form-label">Note</label>
                                 <div class="col-sm-10">
-                                    <textarea name="note" class="form-control" cols="30" rows="10">{{$customer->note ??  old('note')}}</textarea>
+                                    <textarea name="note" class="form-control" cols="30" rows="10">{{$data->note ??  old('note')}}</textarea>
                                 </div>
                             </div>
 

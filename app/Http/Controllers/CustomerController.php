@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\Customer;
 use Illuminate\Http\Request;
 
@@ -22,7 +21,7 @@ class CustomerController extends Controller
 
     public function form($id = null)
     {
-        return view('pages.customers.form', ['customer' => $this->customer->find($id) ?? null]);
+        return view('pages.customers.form', ['data' => $this->customer->find($id) ?? null]);
     }
 
     public function save(Request $request)
