@@ -5,6 +5,8 @@
                 <div class="d-flex justify-content-between">
                     <div>
                         <h1 class="h3 mb-2 text-gray-800">Customers</h1>
+                        <p class="mb-4">Proceed to create or update customer</p>
+
                     </div>
                     <div>
                         <a href="{{route('customers')}}" class="btn btn-primary">View all</a>
