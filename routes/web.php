@@ -40,5 +40,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/orders/form/{id?}', [OrderController::class, 'form'])->name('orders.form');
     Route::post('/orders/save', [OrderController::class, 'save'])->name('orders.save');
 
+    Route::get('/products', [\App\Http\Controllers\ProductController::class, 'index'])->name('products');
+    Route::get('/products/form/{id?}', [\App\Http\Controllers\ProductController::class, 'form'])->name('products.form');
+    Route::post('/products/save', [\App\Http\Controllers\ProductController::class, 'save'])->name('products.save');
+
 
 });

@@ -157,14 +157,20 @@
         <!-- Nav Item - Charts -->
 
         <li class="nav-item">
+            <a class="nav-link" href="{{route('products')}}">
+                <i class="fas fa-boxes"></i>
+                <span>Products</span></a>
+        </li>
+
+        <li class="nav-item">
             <a class="nav-link" href="{{route('orders')}}">
-                <i class="fas fa-users"></i>
+                <i class="fas fa-list"></i>
                 <span>Orders</span></a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link" href="{{route('employees')}}">
-                <i class="fas fa-users"></i>
+                <i class="fas fa-house-user"></i>
                 <span>Employees</span></a>
         </li>
 
@@ -173,6 +179,7 @@
                 <i class="fas fa-users"></i>
                 <span>Customers</span></a>
         </li>
+
         <li class="nav-item">
             <a class="nav-link" href="{{route('users')}}">
                 <i class="fas fa-users"></i>
