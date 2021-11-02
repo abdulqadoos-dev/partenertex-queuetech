@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
@@ -44,5 +45,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/products/form/{id?}', [\App\Http\Controllers\ProductController::class, 'form'])->name('products.form');
     Route::post('/products/save', [\App\Http\Controllers\ProductController::class, 'save'])->name('products.save');
 
+    Route::get('/inventories', [InventoryController::class, 'index'])->name('inventories');
+    Route::get('/inventories/form/{id?}', [InventoryController::class, 'create'])->name('inventories.form');
+    Route::post('/inventories/save', [InventoryController::class, 'store'])->name('inventories.save');
+    Route::delete('/inventories/delete/{id}', [InventoryController::class, 'destroy'])->name('inventories.delete');
 
 });

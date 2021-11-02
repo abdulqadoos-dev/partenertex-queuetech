@@ -163,6 +163,12 @@
         </li>
 
         <li class="nav-item">
+            <a class="nav-link" href="{{route('inventories')}}">
+                <i class="fas fa-boxes"></i>
+                <span>Inventories</span></a>
+        </li>
+
+        <li class="nav-item">
             <a class="nav-link" href="{{route('orders')}}">
                 <i class="fas fa-list"></i>
                 <span>Orders</span></a>
