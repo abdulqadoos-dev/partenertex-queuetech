@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BundleController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\InventoryController;
@@ -50,4 +51,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/inventories/save', [InventoryController::class, 'store'])->name('inventories.save');
     Route::delete('/inventories/delete/{id}', [InventoryController::class, 'destroy'])->name('inventories.delete');
 
+    Route::get('/bundles', [BundleController::class, 'index'])->name('bundles');
+    Route::get('/bundles/form/{id?}', [BundleController::class, 'create'])->name('bundles.form');
+    Route::post('/bundles/save', [BundleController::class, 'store'])->name('bundles.save');
+    Route::delete('/bundles/delete/{id}', [BundleController::class, 'destroy'])->name('bundles.delete');
 });

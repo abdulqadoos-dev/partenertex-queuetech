@@ -10,4 +10,9 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = ['category', 'name', 'description', 'unit_sale_price', 'unit_buy_price', 'stock', 'sku', 'upc'];
+
+    public function bundles()
+    {
+        return $this->belongsToMany(Bundle::class);
+    }
 }

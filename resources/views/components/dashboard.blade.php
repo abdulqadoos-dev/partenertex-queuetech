@@ -169,6 +169,12 @@
         </li>
 
         <li class="nav-item">
+            <a class="nav-link" href="{{route('bundles')}}">
+                <i class="fas fa-list"></i>
+                <span>Bundles</span></a>
+        </li>
+
+        <li class="nav-item">
             <a class="nav-link" href="{{route('orders')}}">
                 <i class="fas fa-list"></i>
                 <span>Orders</span></a>
