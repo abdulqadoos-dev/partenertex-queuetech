@@ -96,6 +96,7 @@ class BundleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->bundle->find($id)->delete();
+        return redirect()->route('bundles')->with(['message' => 'Bundle delete successfully']);
     }
 }

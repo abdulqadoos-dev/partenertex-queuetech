@@ -26,10 +26,10 @@
 
                             <div class="mb-3 row">
                                 <label for="phone" class="col-sm-2 col-form-label">Products</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-10 bundle-prods">
                                     @if(isset($data->products))
-                                        @foreach($data->products as $prod)
-                                            <div class="row">
+                                        @foreach($data->products as $index => $prod)
+                                            <div class="row mt-2" id="prod-row-{{$index}}">
                                                 <div class="col-md-7">
                                                     <select class="form-control" name="product_id[]" required>
                                                         <option value="">select one</option>
@@ -42,12 +42,13 @@
                                                     <input type="number" min="0" required placeholder="quantity..." class="form-control" name="quantity[]"  value="{{$prod->pivot->quantity ?? 0}}">
                                                 </div>
                                                 <div class="col-md-1">
-                                                    <span class="fa fa-plus text-success"></span>
+                                                    @if($index == 0)<span class="fa fa-plus text-success" onclick="addNewProdRow()"></span>@endif
+                                                    @if($index != 0)<span class="fa fa-minus text-danger" onclick="removeHtmlById('prod-row-{{$index}}')"></span>@endif
                                                 </div>
                                             </div>
                                         @endforeach
                                     @else
-                                        <div class="row">
+                                        <div class="row" id="prod-row-0">
                                             <div class="col-md-7">
                                                 <select class="form-control" name="product_id[]" required>
                                                     <option value="">select one</option>
@@ -60,7 +61,7 @@
                                                 <input type="number" min="0" required placeholder="quantity..." class="form-control" name="quantity[]"  value="{{$data->unit ??  old('unit')}}">
                                             </div>
                                             <div class="col-md-1">
-                                                <span class="fa fa-plus text-success"></span>
+                                                <span class="fa fa-plus text-success" onclick="addNewProdRow()"></span>
                                             </div>
                                         </div>
                                     @endif()
@@ -80,4 +81,5 @@
             </div>
         </div>
     </div>
+    @include('pages.bundles.scripts.scripts')
 </x-dashboard>
