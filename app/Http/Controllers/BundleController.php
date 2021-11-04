@@ -3,16 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bundle;
+use App\Models\BundleProduct;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
 class BundleController extends Controller
 {
-    protected $bundle;
+    protected $bundle, $bundleProduct;
 
     public function __construct()
     {
         $this->bundle = new Bundle;
+        $this->bundleProduct = new BundleProduct;
     }
 
     /**
@@ -47,9 +49,8 @@ class BundleController extends Controller
     public function store(Request $request)
     {
         $bundle = $this->bundle->updateOrCreate(['id' => $request->id], $request->all());
-        $bundle->products()->sync($request->product_id);
         foreach ($request->product_id as $index => $pIds){
-            $bundle->products()->updateExistingPivot($pIds, ['quantity'=>($request->quantity[$index] ?? 0)]);
+            $this->bundleProduct->updateOrCreate(['bundle_id' => $bundle->id, 'product_id' => $pIds], ['quantity' => ($request->quantity[$index] ?? 0)]);
         }
         return redirect()->route('bundles')->with(['message' => 'Bundles saved successfully']);
     }

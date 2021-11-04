@@ -14,6 +14,7 @@
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
+                        @if(session('message')) <x-alert class="alert-info" :message="session('message')"/> @endif
                         <form action="{{route('bundles.save')}}" method="POST">
                             @csrf
                             <input type="hidden" name="id" value="{{$data->id ?? old('id')}}">
