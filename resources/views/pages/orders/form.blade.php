@@ -16,7 +16,7 @@
                         <form action="{{route('orders.save')}}" method="POST">
                             @csrf
                             <input type="hidden" name="id" value="{{$data->id ?? old('id')}}">
-                            <input type="hidden" name="order_id" value="{{$data['order_id'] ?? $data['order_id'] = \Str::upper(\Str::random(15))}}">
+                            <input type="hidden" name="order_no" value="{{$data['order_no'] ?? $data['order_no'] = \Str::upper(\Str::random(15))}}">
 
                             <div class="row justify-content-between my-4">
 
@@ -102,6 +102,21 @@
 
                             </div>
 
+                            <div class="row justify-content-between my-4">
+
+                                <div class="col">
+                                    <label for="order_type" class="form-label">Order Type</label>
+                                    <select class="form-control" name="type">
+                                        <option selected>-- select --</option>
+                                        @foreach($order_type as $option)
+                                            <option
+                                                value="{{$option['value']}}" {{isset($data->type) && $data->type === $option['value'] ||  old('type') === $option['value'] ? 'selected' : ''}}>{{$option['label']}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                            </div>
+
                             <div class="row justify-content-around my-4">
                                 <div class="col">
                                     <label for="notes" class="form-label">Notes</label>
@@ -109,6 +124,167 @@
                                               rows="3">{{$data->notes ?? old('notes')}}</textarea>
                                 </div>
 
+                            </div>
+
+                            <div class="row justify-content-around my-4">
+                                <div class="col">
+                                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link active" id="bundle-tab" data-toggle="tab" href="#bundle" role="tab" aria-controls="bundle" aria-selected="true">Bundle</a>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link" id="product-tab" data-toggle="tab" href="#product" role="tab" aria-controls="product" aria-selected="false">Product</a>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <a class="nav-link" id="inventory-tab" data-toggle="tab" href="#inventory" role="tab" aria-controls="inventory" aria-selected="false">Inventory</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content" id="myTabContent">
+                                        <div class="tab-pane fade show active" id="bundle" role="tabpanel" aria-labelledby="bundle-tab">
+                                            <div class="row justify-content-end my-4">
+                                                <div class="col-2">
+                                                    <span class="btn btn-light text-success" onclick="addNewBundleRow()">
+                                                        Add more <i class="fa fa-plus " ></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="row justify-content-around my-4">
+                                                <div class="col-12 bundles">
+                                                    @foreach($data->bundles ?? [] as $index => $bundle)
+                                                        <div class="row my-2" id="bundle-row-{{$index}}">
+                                                            <div class="col-md-7">
+                                                                <select class="form-control" name="bundle_id[]"
+                                                                        required="">
+                                                                    <option value="">Select One</option>
+                                                                    @foreach($bundles ?? [] as $bndl)
+                                                                        <option value="{{$bndl->id}}" @if($bndl->id == $bundle->id) selected @endif>{{$bndl->name}}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <input type="number" min="1" required=""
+                                                                       placeholder="quantity..." class="form-control"
+                                                                       name="bundle_quantity[]" value="{{$bundle->pivot->quantity}}"/>
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                            <span class="fa fa-minus text-danger"
+                                                                  onclick="removeHtmlById('bundle-row-{{$index}}')"></span>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="product" role="tabpanel" aria-labelledby="product-tab">
+                                            <div class="row justify-content-end my-4">
+                                                <div class="col-2">
+                                                    <span class="btn btn-light text-success" onclick="addNewProdRow()">
+                                                        Add more <i class="fa fa-plus " ></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="row justify-content-around my-4">
+                                                <div class="col-12 prods">
+                                                    @foreach($data->products ?? [] as $index => $product)
+                                                        <div class="row my-2" id="prod-row-0">
+                                                            <div class="col-md-7">
+                                                                <select class="form-control" name="product_id[]" required="">
+                                                                    <option value="">Select Product</option>
+                                                                    @foreach($products ?? [] as $prod)
+                                                                        <option value="{{$prod->id}}" @if($prod->id == $product->id) selected @endif>{{$prod->name}}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <input type="number" min="1" required="" placeholder="quantity..." class="form-control" name="product_quantity[]" value="{{$product->pivot->quantity}}"/>
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                                <span class="fa fa-minus text-danger" onclick="removeHtmlById('prod-row-{{$index}}')"></span>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="inventory" role="tabpanel" aria-labelledby="inventory-tab">
+
+                                            <div class="row justify-content-around my-4">
+
+                                                <div class="col">
+                                                    <label for="name" class="form-label">Product Name</label>
+                                                    <input type="text" class="form-control" name="name"
+                                                           value="{{$data->inventoryOrderProducts[0]->name ?? old('name')}}">
+                                                </div>
+
+                                                <div class="col">
+                                                    <label for="quantity" class="form-label">Quantity</label>
+                                                    <input type="number" min="1" class="form-control" name="quantity"
+                                                           value="{{$data->inventoryOrderProducts[0]->quantity ?? old('quantity')}}">
+                                                </div>
+
+                                                <div class="col">
+                                                    <label for="unit" class="form-label">Unit</label>
+                                                    <input type="text" class="form-control" name="unit"
+                                                           value="{{$data->inventoryOrderProducts[0]->unit ?? old('unit')}}">
+                                                </div>
+                                            </div>
+
+                                            <div class="row justify-content-around my-4">
+
+                                                <div class="col">
+                                                    <label for="length" class="form-label">Length</label>
+                                                    <input type="number" min="1" class="form-control" name="length"
+                                                           value="{{$data->inventoryOrderProducts[0]->length ?? old('length')}}">
+                                                </div>
+
+                                                <div class="col">
+                                                    <label for="width" class="form-label">Width</label>
+                                                    <input type="number" min="1" class="form-control" name="width"
+                                                           value="{{$data->inventoryOrderProducts[0]->width ?? old('width')}}">
+                                                </div>
+
+                                                <div class="col">
+                                                    <label for="height" class="form-label">Height</label>
+                                                    <input type="number" min="1" class="form-control" name="height"
+                                                           value="{{$data->inventoryOrderProducts[0]->height ?? old('height')}}">
+                                                </div>
+                                            </div>
+
+                                            <div class="row justify-content-end my-4">
+                                                <div class="col-2">
+                                                    <span class="btn btn-light text-success" onclick="addNewInventoryRow()">
+                                                        Add more <i class="fa fa-plus " ></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            <div class="row justify-content-around my-4">
+                                                <div class="col-12 inventories">
+                                                    @foreach($data->inventoryOrderProducts[0]->inventories ?? [] as $inventory)
+                                                        <div class="row my-2" id="inventory-row-0">
+                                                            <div class="col-md-11">
+                                                                <select class="form-control" name="inventory_id[]"
+                                                                        required="">
+                                                                    <option value="">Select Product</option>
+                                                                    @foreach($inventories as $invntry)
+                                                                        <option value="{{$invntry->id}}" @if($invntry->id == $inventory->id) selected @endif>{{$invntry->name}}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                            <span class="fa fa-minus text-danger"
+                                                                  onclick="removeHtmlById('prod-row-{{$index}}')"></span>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="mb-3 row">
@@ -123,4 +299,5 @@
             </div>
         </div>
     </div>
+    @include('pages.orders.scripts.scripts')
 </x-dashboard>

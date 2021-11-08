@@ -19,7 +19,7 @@
                 <table class="table table-borderless" id="data-table">
                     <thead>
                     <tr>
-                        <th scope="col">order id</th>
+                        <th scope="col">order no</th>
                         <th scope="col">customer</th>
                         <th scope="col">employee</th>
                         <th scope="col">delivery method</th>
@@ -31,7 +31,7 @@
                     <tbody>
                     @foreach($orders as $item)
                         <tr>
-                            <th >{{$item->order_id}}</th>
+                            <th >{{$item->order_no}}</th>
                             <th>{{$item->customer->name}}</th>
                             <th>{{$item->employee->name}}</th>
                             <th>{{$item->delivery_method}}</th>

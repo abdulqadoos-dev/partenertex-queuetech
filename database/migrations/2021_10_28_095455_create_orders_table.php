@@ -18,7 +18,7 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->foreignId('customer_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('employee_id')->constrained()->onUpdate('cascade');
-            $table->string('order_id')->default(Str::upper(Str::random(15)));
+            $table->string('order_no')->default(Str::upper(Str::random(15)));
             $table->string('receipt_date')->nullable();
             $table->string('cutting_date')->nullable();
             $table->string('sewing_date')->nullable();
@@ -26,6 +26,7 @@ class CreateOrdersTable extends Migration
             $table->string('delivery_date')->nullable();
             $table->string('delivery_method')->nullable();
             $table->string('status')->nullable();
+            $table->string('type')->nullable();
             $table->text('notes')->nullable();
             $table->timestamps();
         });
