@@ -60,7 +60,7 @@ class OrderController extends Controller
             'delivery_options' => $this->delivery_options,
             'customers' => Customer::all('id', 'name'),
             'employees' => Employee::all('id', 'name'),
-            'products' => Product::all('id', 'name'),
+            'products' => Product::all('id', 'name','unit_sale_price','stock'),
             'bundles' => Bundle::all('id', 'name'),
             'inventories' => Inventory::all('id', 'name'),
             'order_type' => $this->order_type,
