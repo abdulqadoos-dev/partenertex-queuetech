@@ -1,5 +1,6 @@
 @if($selectedProducts->isNotEmpty())
     @foreach($selectedProducts as $product)
+
     <div class="row align-items-end my-4">
         <div class="col-lg-6">
             <label class="form-label">Product</label>
@@ -12,7 +13,7 @@
         </div>
         <div class="col-lg-4">
             <label class="form-label">Quantity</label>
-            <input type="number" min="1" class="form-control" name="product_quantity[]" value="1"/>
+            <input type="number" min="1" class="form-control" name="product_quantity[]" value="{{$product->pivot->quantity}}"/>
         </div>
         <div class="col-lg-2">
             <span class="btn btn-danger w-100" onclick="removeProductRow(this)">Remove</span>
@@ -21,15 +22,15 @@
             <div class="row my-4">
                 <div class="col">
                     <label class="form-label">Dimensions</label>
-                    <input type="text" class="form-control" id="dimensions" disabled value="">
+                    <input type="text" class="form-control" id="dimensions" disabled value="{{$product->id}}">
                 </div>
                 <div class="col">
                     <label class="form-label">Unit Price</label>
-                    <input type="text" class="form-control" id="unitPrice" disabled value="">
+                    <input type="text" class="form-control" id="unitPrice" disabled value="{{$product->unit_sale_price}}">
                 </div>
                 <div class="col">
                     <label class="form-label">Stock</label>
-                    <input type="text" class="form-control" id="stock" disabled value="">
+                    <input type="text" class="form-control" id="stock" disabled value="{{$product->stock}}">
                 </div>
             </div>
         </div>
