@@ -127,15 +127,12 @@
                             </div>
 
                             <div class="row align-items-center mt-5">
-                                <div class="col-lg-10">
+                                <div class="col-lg-12">
                                     <h6 class="font-weight-bold"><i class="fa fa-boxes"></i> Select Products</h6>
-                                </div>
-                                <div class="col-lg-2">
-{{--                                    <span class="btn btn-primary w-100" onclick="addProductRow()">Add More</span>--}}
                                 </div>
                             </div>
 
-                            <x-order-form-product-section :products="$products"/>
+                            <x-order-form-product-section :products="$products" :selectedProducts="$data->products ?? collect([])"/>
 
                             <div class="row justify-content-between my-4">
                                 <div class="col-2">
@@ -146,49 +143,10 @@
                                 </div>
                             </div>
 
-{{--                            <div class="row justify-content-around my-4">--}}
-{{--                                <div class="col-12 prods">--}}
-{{--                                    @foreach($data->products ?? [] as $index => $product)--}}
-{{--                                        <div class="row my-2" id="prod-row-0">--}}
-{{--                                            <div class="col-md-7">--}}
-{{--                                                <select class="form-control" name="product_id[]"--}}
-{{--                                                        required="">--}}
-{{--                                                    <option value="">Select Product</option>--}}
-{{--                                                    @foreach($products ?? [] as $prod)--}}
-{{--                                                        <option value="{{$prod->id}}"--}}
-{{--                                                                @if($prod->id == $product->id) selected @endif>{{$prod->name}}</option>--}}
-{{--                                                    @endforeach--}}
-{{--                                                </select>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="col-md-4">--}}
-{{--                                                <input type="number" min="1" required=""--}}
-{{--                                                       placeholder="quantity..." class="form-control"--}}
-{{--                                                       name="product_quantity[]"--}}
-{{--                                                       value="{{$product->pivot->quantity}}"/>--}}
-{{--                                            </div>--}}
-{{--                                            <div class="col-md-1">--}}
-{{--                                                                <span class="fa fa-minus text-danger"--}}
-{{--                                                                      onclick="removeHtmlById('prod-row-{{$index}}')"></span>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    @endforeach--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-
-
-
-
-{{--                            <div class="mb-3 row">--}}
-{{--                                <div class="col-sm-10">--}}
-{{--                                    <button class="btn btn-primary" type="submit">Save</button>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-{{--    @include('pages.orders.scripts.scripts')--}}
 </x-dashboard>

@@ -12,11 +12,12 @@ class OrderFormProductSection extends Component
      *
      * @return void
      */
-    public $products;
+    public $products,$selectedProducts;
 
-    public function __construct($products)
+    public function __construct($products,$selectedProducts)
     {
         $this->products = $products;
+        $this->selectedProducts = $selectedProducts;
     }
 
     /**
