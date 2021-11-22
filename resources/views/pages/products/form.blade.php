@@ -33,12 +33,30 @@
                             </div>
 
                             <div class="row justify-content-between my-4">
+
                                 <div class="col">
                                     <label for="receipt_date" class="form-label">Name</label>
                                     <input type="text" class="form-control" name="name"
                                            value="{{$data->name ?? old('name')}}">
                                 </div>
 
+                                <div class="col">
+                                    <label for="material" class="form-label">Material</label>
+                                    <input type="text" class="form-control" name="material"
+                                           value="{{$data->material ?? old('material')}}">
+                                </div>
+
+                                <div class="col">
+                                    <label for="dimension" class="form-label">Dimension</label>
+                                    <input type="text" class="form-control" name="dimension"
+                                           value="{{$data->dimension ?? old('dimension')}}">
+                                </div>
+
+
+
+                            </div>
+
+                            <div class="row justify-content-between my-4">
                                 <div class="col">
                                     <label for="unit_sale_price" class="form-label">Unit sale price</label>
                                     <input type="number" class="form-control" name="unit_sale_price"
@@ -50,12 +68,33 @@
                                     <input type="number" class="form-control" name="unit_buy_price"
                                            value="{{$data->unit_buy_price ?? old('unit_buy_price')}}">
                                 </div>
-
-
-
                             </div>
 
                             <div class="row justify-content-between my-4">
+                                <div class="col">
+                                    <label for="metraj" class="form-label">Metraj</label>
+                                    <input type="number" class="form-control" name="metraj"
+                                           value="{{$data->metraj ?? old('metraj')}}">
+                                </div>
+
+                                <div class="col">
+                                    <label for="vatelian" class="form-label">Vatelian</label>
+                                    <input type="number" class="form-control" name="vatelian"
+                                           value="{{$data->vatelian ?? old('vatelian')}}">
+                                </div>
+
+                                <div class="col">
+                                    <label for="puf" class="form-label">puf</label>
+                                    <input type="number" class="form-control" name="puf"
+                                           value="{{$data->puf ?? old('puf')}}">
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="row justify-content-between my-4">
+
                                 <div class="col">
                                     <label for="stock" class="form-label">Stock</label>
                                     <input type="number" class="form-control" name="stock"
@@ -74,7 +113,6 @@
                                            value="{{$data->upc ?? old('upc')}}">
                                 </div>
                             </div>
-
 
 
                             <div class="row justify-content-around my-4">

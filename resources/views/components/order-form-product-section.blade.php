@@ -1,6 +1,5 @@
 @if($selectedProducts->isNotEmpty())
     @foreach($selectedProducts as $product)
-
     <div class="row align-items-end my-4">
         <div class="col-lg-6">
             <label class="form-label">Product</label>
@@ -83,9 +82,9 @@
     document.addEventListener("DOMContentLoaded", function () {
         productHtml = $("#orderFormProductHtml").html();
         productSection = $("#orderFormProductSection");
-        if({{$selectedProducts->isNotEmpty()}}){
-            $("#orderFormProductHtml").remove();
-        }
+        {{--if({{$selectedProducts->isNotEmpty()}}){--}}
+        {{--    $("#orderFormProductHtml").remove();--}}
+        {{--}--}}
     });
 
     const handleOnChangeProductValues = (e, products) => {
@@ -98,7 +97,6 @@
             main.find("#unitPrice").val(product.unit_sale_price);
             main.find("#stock").val(product.stock);
         }
-
     }
 
     const addProductRow = () => productSection.append(productHtml)

@@ -16,13 +16,18 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('category');
+            $table->string('sku');
             $table->string('name');
-            $table->text('description');
+            $table->string('material');
             $table->string('unit_sale_price');
             $table->string('unit_buy_price');
+            $table->string('metraj');
+            $table->string('vatelian');
             $table->string('stock');
-            $table->string('sku');
+            $table->string('dimension');
             $table->string('upc');
+            $table->string('puf');
+            $table->text('description');
             $table->timestamps();
         });
     }
