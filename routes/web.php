@@ -5,6 +5,8 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,7 +30,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
-    Route::get('/users', [\App\Http\Controllers\UserController::class, 'index'])->name('users');
+    Route::get('/users', [UserController::class, 'index'])->name('users');
 
     Route::get('/customers', [CustomerController::class, 'index'])->name('customers');
     Route::get('/customers/form/{id?}', [CustomerController::class, 'form'])->name('customers.form');
@@ -42,9 +44,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/orders/form/{id?}', [OrderController::class, 'form'])->name('orders.form');
     Route::post('/orders/save', [OrderController::class, 'save'])->name('orders.save');
 
-    Route::get('/products', [\App\Http\Controllers\ProductController::class, 'index'])->name('products');
-    Route::get('/products/form/{id?}', [\App\Http\Controllers\ProductController::class, 'form'])->name('products.form');
-    Route::post('/products/save', [\App\Http\Controllers\ProductController::class, 'save'])->name('products.save');
+    Route::get('/products', [ProductController::class, 'index'])->name('products');
+    Route::get('/products/form/{id?}', [ProductController::class, 'form'])->name('products.form');
+    Route::post('/products/save', [ProductController::class, 'save'])->name('products.save');
 
     Route::get('/inventories', [InventoryController::class, 'index'])->name('inventories');
     Route::get('/inventories/form/{id?}', [InventoryController::class, 'create'])->name('inventories.form');
@@ -55,4 +57,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/bundles/form/{id?}', [BundleController::class, 'create'])->name('bundles.form');
     Route::post('/bundles/save', [BundleController::class, 'store'])->name('bundles.save');
     Route::delete('/bundles/delete/{id}', [BundleController::class, 'destroy'])->name('bundles.delete');
+
 });
