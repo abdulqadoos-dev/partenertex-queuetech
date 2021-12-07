@@ -29,16 +29,16 @@
                     <tbody>
                     @foreach($employees as $item)
                         <tr>
-                            <th scope="row">{{$item->name}}</th>
-                            <th scope="row">{{$item->job_title}}</th>
-                            <th scope="row">{{$item->phone}}</th>
-                            <th scope="row">{{$item->email}}</th>
-                            <th scope="row">{{$item->commission_rate}}</th>
-                            <th scope="row">
+                            <td scope="row">{{$item->name}}</td>
+                            <td scope="row">{{$item->job_title}}</td>
+                            <td scope="row">{{$item->phone}}</td>
+                            <td scope="row">{{$item->email}}</td>
+                            <td scope="row">{{$item->commission_rate}}</td>
+                            <td scope="row">
                                 <a href="{{route('employees.form',['id' => $item->id])}}">
                                     <i class="fa fa-pen-alt text-warning"></i>
                                 </a>
-                            </th>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>

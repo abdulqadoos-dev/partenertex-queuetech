@@ -26,27 +26,25 @@
                         <th scope="col">country</th>
                         <th scope="col">postal code</th>
                         <th scope="col">join source</th>
-                        <th scope="col">note</th>
                         <th scope="col">actions</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($customers as $item)
                         <tr>
-                            <th scope="row"><a href="{{route('orders.customer',['customerId' => $item->id])}}">{{$item->name}}</a></th>
-                            <th scope="row">{{$item->phone}}</th>
-                            <th scope="row">{{$item->email}}</th>
-                            <th scope="row">{{$item->address}}</th>
-                            <th scope="row">{{$item->city}}</th>
-                            <th scope="row">{{$item->country}}</th>
-                            <th scope="row">{{$item->postal_code}}</th>
-                            <th scope="row">{{$item->join_source}}</th>
-                            <th scope="row">{{$item->note}}</th>
-                            <th scope="row">
+                            <td><a href="{{route('orders.customer',['customerId' => $item->id])}}">{{$item->name}}</a></td>
+                            <td>{{$item->phone}}</td>
+                            <td>{{$item->email}}</td>
+                            <td>{{$item->address}}</td>
+                            <td>{{$item->city}}</td>
+                            <td>{{$item->country}}</td>
+                            <td>{{$item->postal_code}}</td>
+                            <td>{{$item->join_source}}</td>
+                            <td>
                                 <a href="{{route('customers.form',['id' => $item->id])}}">
                                     <i class="fa fa-pen-alt text-warning"></i>
                                 </a>
-                            </th>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>

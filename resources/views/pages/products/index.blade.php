@@ -33,19 +33,19 @@
                     <tbody>
                     @foreach($products as $item)
                         <tr>
-                            <th>{{$item->name}}</th>
-                            <th>{{$item->category}}</th>
-                            <th>{{$item->description}}</th>
-                            <th>{{$item->unit_sale_price}}</th>
-                            <th>{{$item->unit_buy_price}}</th>
-                            <th>{{$item->stock}}</th>
-                            <th>{{$item->sku}}</th>
-                            <th>{{$item->upc}}</th>
-                            <th>
+                            <td>{{$item->name}}</td>
+                            <td>{{$item->category}}</td>
+                            <td>{{$item->description}}</td>
+                            <td>{{$item->unit_sale_price}}</td>
+                            <td>{{$item->unit_buy_price}}</td>
+                            <td>{{$item->stock}}</td>
+                            <td>{{$item->sku}}</td>
+                            <td>{{$item->upc}}</td>
+                            <td>
                                 <a href="{{route('products.form',['id' => $item->id])}}">
                                     <i class="fa fa-pen-alt text-warning"></i>
                                 </a>
-                            </th>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>
