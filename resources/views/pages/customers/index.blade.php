@@ -33,7 +33,7 @@
                     <tbody>
                     @foreach($customers as $item)
                         <tr>
-                            <th scope="row">{{$item->name}}</th>
+                            <th scope="row"><a href="{{route('orders.customer',['customerId' => $item->id])}}">{{$item->name}}</a></th>
                             <th scope="row">{{$item->phone}}</th>
                             <th scope="row">{{$item->email}}</th>
                             <th scope="row">{{$item->address}}</th>

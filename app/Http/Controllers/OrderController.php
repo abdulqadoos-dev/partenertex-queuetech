@@ -49,10 +49,11 @@ class OrderController extends Controller
         $this->product = new Product;
     }
 
-    public function index()
+    public function index($customerId = null)
     {
+
         return view('pages.orders.index', [
-            "orders" => $this->order->orderBy('id', 'DESC')->get(),
+            "orders" => $customerId ? $this->order->where('customer_id',$customerId)->orderBy('id', 'DESC')->get() :$this->order->orderBy('id', 'DESC')->get(),
             "status_options" => $this->status_options,
             "delivery_options" => $this->delivery_options,
             "type_options" => $this->order_type
