@@ -28,10 +28,10 @@ class OrderController extends Controller
     ];
 
     protected $status_options = [
-        ["label" => "Fulfilled", "value" => "fulfilled"],
-        ["label" => "Partially Fulfilled", "value" => "partially_fulfilled"],
-        ["label" => "Open", "value" => "open"],
-        ["label" => "completed", "value" => Constants::ORDER_STATUS_COMPLETED]
+        ["label" => "Fulfilled", "value" => "fulfilled", "class" => "info"],
+        ["label" => "Partially Fulfilled", "value" => "partially_fulfilled", "class" => "warning"],
+        ["label" => "Open", "value" => "open", "class" => "primary"],
+        ["label" => "Completed", "value" => Constants::ORDER_STATUS_COMPLETED, "class" => "success"]
     ];
 
     protected $order_type = [
@@ -51,7 +51,12 @@ class OrderController extends Controller
 
     public function index()
     {
-        return view('pages.orders.index', ["orders" => $this->order->orderBy('id', 'DESC')->get()]);
+        return view('pages.orders.index', [
+            "orders" => $this->order->orderBy('id', 'DESC')->get(),
+            "status_options" => $this->status_options,
+            "delivery_options" => $this->delivery_options,
+            "type_options" => $this->order_type
+        ]);
     }
 
     public function form($id = null)
@@ -107,5 +112,12 @@ class OrderController extends Controller
                 $this->inventoryOrder->updateOrCreate(['inventory_order_product_id' => $inventoryOrderProduct->id, 'inventory_id' => $inventory_id]);
             }
         }
+    }
+
+    public function details($id)
+    {
+        return view('pages.orders.details',[
+            "order" => $this->order->findOrFail($id)
+        ]);
     }
 }

@@ -13,7 +13,7 @@
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
-                        <form action="{{route('orders.save')}}" method="POST">
+                        <form action="{{route('orders.save')}}" method="POST" id="orderForm">
                             @csrf
                             <input type="hidden" name="id" value="{{$data->id ?? old('id')}}">
                             <input type="hidden" name="order_no"
@@ -22,8 +22,8 @@
                             <div class="row justify-content-between my-4">
                                 <div class="col">
                                     <label for="customer_id" class="form-label">Customer</label>
-                                    <select class="form-control" name="customer_id">
-                                        <option selected>-- select --</option>
+                                    <select class="form-control required" name="customer_id">
+                                        <option selected value="">-- select --</option>
                                         @foreach($customers as $option)
                                             <option
                                                 value="{{$option->id}}" {{isset($data->customer_id) && $data->customer_id === $option->id || old('customer_id') === $option->id ? 'selected' : ''}}>{{$option->name}}</option>
@@ -33,8 +33,8 @@
 
                                 <div class="col">
                                     <label for="customer_id" class="form-label">Employee</label>
-                                    <select class="form-control" name="employee_id">
-                                        <option selected>-- select --</option>
+                                    <select class="form-control required" name="employee_id">
+                                        <option selected value="">-- select --</option>
                                         @foreach($employees as $option)
                                             <option
                                                 value="{{$option->id}}" {{isset($data->employee_id) && $data->employee_id === $option->id || old('customer_id') === $option->id ? 'selected' : ''}}>{{$option->name}}</option>
@@ -48,8 +48,8 @@
 
                                 <div class="col">
                                     <label for="delivery_method" class="form-label">Delivery method</label>
-                                    <select class="form-control" name="delivery_method">
-                                        <option selected>-- select --</option>
+                                    <select class="form-control required" name="delivery_method">
+                                        <option selected value="">-- select --</option>
                                         @foreach($delivery_options as $option)
                                             <option
                                                 value="{{$option['value']}}" {{isset($data->delivery_method) && $data->delivery_method === $option['value'] ||  old('delivery_method') === $option['value'] ? 'selected' : ''}}>{{$option['label']}}</option>
@@ -60,8 +60,8 @@
 
                                 <div class="col">
                                     <label for="delivery_method" class="form-label">Order Status</label>
-                                    <select class="form-control" name="status">
-                                        <option selected>-- select --</option>
+                                    <select class="form-control required" name="status">
+                                        <option selected value="">-- select --</option>
                                         @foreach($status_options as $option)
                                             <option
                                                 value="{{$option['value']}}" {{isset($data->status) && $data->status === $option['value'] ||  old('status_options') === $option['value'] ? 'selected' : ''}}>{{$option['label']}}</option>
@@ -71,8 +71,8 @@
 
                                 <div class="col">
                                     <label for="order_type" class="form-label">Order Type</label>
-                                    <select class="form-control" name="type">
-                                        <option selected>-- select --</option>
+                                    <select class="form-control required" name="type">
+                                        <option selected value="">-- select --</option>
                                         @foreach($order_type as $option)
                                             <option
                                                 value="{{$option['value']}}" {{isset($data->type) && $data->type === $option['value'] ||  old('type') === $option['value'] ? 'selected' : ''}}>{{$option['label']}}</option>
@@ -88,19 +88,19 @@
                             <div class="row justify-content-between my-4">
                                 <div class="col">
                                     <label for="receipt_date" class="form-label">Receipt date</label>
-                                    <input type="date" class="form-control" name="receipt_date"
+                                    <input type="date" class="form-control required" name="receipt_date"
                                            value="{{$data->receipt_date ?? old('receipt_date')}}">
                                 </div>
 
                                 <div class="col">
                                     <label for="sewing_date" class="form-label">Swing date</label>
-                                    <input type="date" class="form-control" name="sewing_date"
+                                    <input type="date" class="form-control required" name="sewing_date"
                                            value="{{$data->sewing_date ?? old('sewing_date')}}">
                                 </div>
 
                                 <div class="col">
                                     <label for="packing_date" class="form-label">Packing date</label>
-                                    <input type="date" class="form-control" name="packing_date"
+                                    <input type="date" class="form-control required" name="packing_date"
                                            value="{{$data->packing_date ?? old('packing_date')}}">
                                 </div>
                             </div>
@@ -108,20 +108,20 @@
                             <div class="row justify-content-between my-4">
                                 <div class="col">
                                     <label for="delivery_date" class="form-label">Delivery date</label>
-                                    <input type="date" class="form-control" name="delivery_date"
+                                    <input type="date" class="form-control required" name="delivery_date"
                                            value="{{$data->delivery_date ?? old('delivery_date')}}">
                                 </div>
 
                                 <div class="col">
                                     <label for="cutting_date" class="form-label">Cutting date</label>
-                                    <input type="date" class="form-control" name="cutting_date"
+                                    <input type="date" class="form-control required" name="cutting_date"
                                            value="{{$data->cutting_date ?? old('cutting_date')}}">
                                 </div>
                             </div>
                             <div class="row justify-content-around my-4">
                                 <div class="col">
                                     <label for="notes" class="form-label">Notes</label>
-                                    <textarea class="form-control" name="notes"
+                                    <textarea class="form-control required" name="notes"
                                               rows="3">{{$data->notes ?? old('notes')}}</textarea>
                                 </div>
                             </div>
@@ -136,7 +136,7 @@
 
                             <div class="row justify-content-between my-4">
                                 <div class="col-2">
-                                    <button class="btn btn-primary w-100" type="submit">Save</button>
+                                    <button class="btn btn-primary w-100" onclick="validateAndSubmitForm('orderForm')" type="button">Save</button>
                                 </div>
                                 <div class="col-2">
                                     <span class="btn btn-success w-100" onclick="addProductRow()">Add More</span>

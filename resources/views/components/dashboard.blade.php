@@ -214,7 +214,21 @@
 <script>
     $(document).ready(function () {
         $('#data-table').DataTable();
+
     });
+
+    function validateAndSubmitForm(form) {
+        let i, valid = true;
+        let formFields = document.getElementsByClassName("required");
+        for (i = 0; i < formFields.length; i++) {
+            if (formFields[i].value === "" && !formFields[i].disabled) {
+                formFields[i].className += " border-danger";
+                valid = false;
+            }
+        }
+        return valid ? $(`#${form}`).submit() : null;
+    }
+
 
     let alertList = document.querySelectorAll('.alert')
     alertList.forEach(function (alert) {

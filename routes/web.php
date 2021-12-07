@@ -43,6 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/orders', [OrderController::class, 'index'])->name('orders');
     Route::get('/orders/form/{id?}', [OrderController::class, 'form'])->name('orders.form');
     Route::post('/orders/save', [OrderController::class, 'save'])->name('orders.save');
+    Route::get('/orders/{id}/details', [OrderController::class, 'details'])->name('orders.details');
 
     Route::get('/products', [ProductController::class, 'index'])->name('products');
     Route::get('/products/form/{id?}', [ProductController::class, 'form'])->name('products.form');

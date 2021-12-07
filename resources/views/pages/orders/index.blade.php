@@ -23,25 +23,41 @@
                         <th scope="col">customer</th>
                         <th scope="col">employee</th>
                         <th scope="col">delivery method</th>
+                        <th scope="col">type</th>
                         <th scope="col">status</th>
-                        <th scope="col">notes</th>
                         <th scope="col">actions</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($orders as $item)
                         <tr>
-                            <th >{{$item->order_no}}</th>
-                            <th>{{$item->customer->name}}</th>
-                            <th>{{$item->employee->name}}</th>
-                            <th>{{$item->delivery_method}}</th>
-                            <th>{{$item->status}}</th>
-                            <th>{{$item->notes}}</th>
-                            <th>
+                            <td >{{$item->order_no}}</td>
+                            <td>{{$item->customer->name}}</td>
+                            <td>{{$item->employee->name}}</td>
+                            <td>
+                                @foreach($delivery_options as $key => $option)
+                                    @if($option['value'] === $item->delivery_method) {{$option['label']}} @endif
+                                @endforeach
+                            </td>
+                            <td>
+                                @foreach($type_options as $key => $option)
+                                    @if($option['value'] === $item->type) {{$option['label']}} @endif
+                                @endforeach
+                            </td>
+                            <td>
+                                @foreach($status_options as $key => $option)
+                                  @if($option['value'] === $item->status)  <span class="badge badge-{{$option['class']}}">{{$option['label']}}</span> @endif
+                                @endforeach
+                            </td>
+                            <td>
                                 <a href="{{route('orders.form',['id' => $item->id])}}">
                                     <i class="fa fa-pen-alt text-warning"></i>
                                 </a>
-                            </th>
+
+                                <a href="{{route('orders.details',['id' => $item->id])}}">
+                                    <i class="fa fa-list-alt ml-2 text-primary"></i>
+                                </a>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>
